@@ -13,7 +13,7 @@ pipeline{
         stage('Quality Gate status check') {
             steps {
                 withSonarQubeEnv('sonar7.6') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn clean package sonar:sonar'
                 }
             }
         }
