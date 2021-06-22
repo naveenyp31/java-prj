@@ -17,7 +17,7 @@ pipeline{
                         sh 'mvn sonar:sonar'
                     }
                     def qg=waitForQualityGate()
-                    if (qg.status != 'ok'){
+                    if (qg.status != 'SUCCESS'){
                        error "pipeline aborted due to Quality Gate failure: ${qg.status}"
                     }
                 }
