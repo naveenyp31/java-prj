@@ -29,16 +29,20 @@ pipeline{
         }
         stage('deploy to dev env'){
             steps{
-                nexusArtifactUploader artifacts: [[artifactId: 'myweb', 
-                classifier: '', 
-                file: 'target/myweb-0.0.1.war', 
-                type: 'war']], 
+                nexusArtifactUploader artifacts: [
+                    [
+                        artifactId: 'myweb', 
+                        classifier: '', 
+                        file: 'target/myweb-0.0.1.war', 
+                        type: 'war'
+                    ]
+                ], 
                 credentialsId: 'nexus-artfact', 
                 groupId: 'in.javahome', 
-                nexusUrl: '10.0.0.126', 
+                nexusUrl: '10.0.0.126:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'http://3.6.91.236:8081/repository/myweb/', 
+                repository: 'myweb', 
                 version: '0.0.1' 
             }
         }
