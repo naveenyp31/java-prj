@@ -29,7 +29,9 @@ pipeline{
         }
         stage('deploy to dev env'){
             steps{
-                sh 'scp -o StrictHostKeyChecking=no target/myweb-0.0.1.war ec2-user@10.0.0.126:/home/ec2-user' 
+                sshagent(['cd']) {
+                    sh 'scp -o StrictHostKeyChecking=no target/myweb-0.0.1.war ec2-user@10.0.0.126:/home/ec2-user' 
+                }
             }
         }
     }
