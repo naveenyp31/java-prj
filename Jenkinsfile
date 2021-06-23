@@ -29,9 +29,17 @@ pipeline{
         }
         stage('deploy to dev env'){
             steps{
-                sshagent(['cd']) {
-                    sh 'scp -o StrictHostKeyChecking=no target/myweb-0.0.1.war ec2-user@10.0.0.126:/home/ec2-user' 
-                }
+                nexusArtifactUploader artifacts: [[artifactId: 'myweb', 
+                classifier: '', 
+                file: 'target/myweb-0.0.1.war', 
+                type: 'war']], 
+                credentialsId: 'nexus-artfact', 
+                groupId: 'in.javahome', 
+                nexusUrl: '10.0.0.126', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'http://3.6.91.236:8081/repository/myweb/', 
+                version: '0.0.1' 
             }
         }
     }
