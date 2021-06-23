@@ -26,6 +26,13 @@ pipeline{
             steps{
                 sh "mvn test"
             }
-        }  
+        }
+        stage('deploy to dev env'){
+            steps{
+                sshagent(['cd']) {
+                    sh 'scp -o StrictHostKeyChecking=no targe/myweb-0.0.1.war ec2-user@10.0.0.74:/home/ec2-user' 
+                }
+            }
+        }
     }
 }
