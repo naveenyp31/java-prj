@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools{
         maven ('maven381')
+
     }
     stages{
         stage('scm checkout'){
@@ -17,7 +18,7 @@ pipeline {
         }
         stage('code analsys'){
             steps{
-                withSonarQubeEnv(credentialsId: 'sonar-api') {
+                withSonarQubeEnv('sonar7.6') {
                     sh 'mvn sonar:sonar'
                 }
             }
