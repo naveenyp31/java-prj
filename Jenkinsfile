@@ -27,23 +27,17 @@ pipeline{
                 sh "mvn test"
             }
         }
+        stage('deploy to Nexus repo'){
+            steps{
+        
+            }
+        }
         stage('deploy to dev env'){
             steps{
-                nexusArtifactUploader artifacts: [
-                    [
-                        artifactId: 'myweb', 
-                        classifier: '', 
-                        file: 'target/myweb-0.0.1.war', 
-                        type: 'war'
-                    ]
-                ], 
-                credentialsId: 'nexus-artfact', 
-                groupId: 'in.javahome', 
-                nexusUrl: '10.0.0.126:8081', 
-                nexusVersion: 'nexus3', 
-                protocol: 'http', 
-                repository: 'myweb', 
-                version: '0.0.1' 
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', 
+                path: '', 
+                url: 'http://3.108.223.176:8080')], 
+                contextPath: null, war: '**/*.war'
             }
         }
     }
