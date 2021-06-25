@@ -29,7 +29,7 @@ pipeline {
             [
                 [artifactId: 'myweb', 
                 classifier: '', 
-                file: 'target/webapp-0.0.1-SNAPSHOT.war', 
+                file: 'target/myweb-0.0.1-SNAPSHOT.war', 
                 type: 'war']
                 ], 
                 credentialsId: 'nexus-artfact', 
