@@ -34,7 +34,7 @@ pipeline {
                 ], 
                 credentialsId: 'nexus-artfact', 
                 groupId: 'in.javahome', 
-                nexusUrl: 'http://15.207.87.57:8081/', 
+                nexusUrl: 'http://15.207.87.57:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: 'webapp-snapshot', 
